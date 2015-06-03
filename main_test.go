@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestDistance(t *testing.T) {
+func TestCityDistance(t *testing.T) {
 	a := City{3, 0}
 	b := City{0, 4}
 	d, err := a.distance(&b)
@@ -30,5 +30,35 @@ func TestCities(t *testing.T) {
 		if v != expected[i] {
 			t.Error("Expected", expected[i], "found", v)
 		}
+	}
+}
+
+func TestTourSwap(t *testing.T) {
+	tour := Tour{cities(3, 100, 100, 42)}
+	c1 := tour.cities[1]
+	c2 := tour.cities[2]
+	tour.swap(1, 2)
+	if tour.cities[1] != c2 {
+		t.Error("Expected", c2, "found", tour.cities[1])
+	}
+	if tour.cities[2] != c1 {
+		t.Error("Expected", c1, "found", tour.cities[2])
+	}
+}
+
+func TestTourAppend(t *testing.T) {
+	tour := Tour{cities(2, 100, 100, 42)}
+	c := City{0, 0}
+	tour.append(c)
+	if tour.cities[2] != c {
+		t.Error("Expected", c, "found", tour.cities[2])
+	}
+}
+
+func TestAlltours(t *testing.T) {
+	var tours []Tour
+	alltours(&tours, cities(3, 100, 100, 42), 0)
+	if len(tours) != 6 {
+		t.Error("Expected", 6, "found", len(tours))
 	}
 }

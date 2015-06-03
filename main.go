@@ -20,12 +20,46 @@ func (c *City) distance(other *City) (float64, error) {
 	return math.Sqrt(sx + sy), nil
 }
 
-func alltours_tsp( /*cities*/ ) {
-
+type Tour struct {
+	cities []City
 }
 
-func shortest_tour( /*tours*/ ) {
+// swap two cities from a tour
+func (t *Tour) swap(i int, j int) {
+	tmp := t.cities[i]
+	t.cities[i] = t.cities[j]
+	t.cities[j] = tmp
+}
 
+// append a new City to this Tour
+func (t *Tour) append(c City) {
+	t.cities = append(t.cities, c)
+}
+
+// solve the tsp problem for the given array of City
+func alltours_tsp(cities []City) Tour {
+	var tours []Tour
+	alltours(&tours, cities, 0)
+	return shortest_tour(tours)
+}
+
+// find the shortest tour in the given array of tours
+func shortest_tour(tours []Tour) Tour {
+	return tours[0]
+}
+
+// Return all possible tours for the City instances contained in the array
+func alltours(tours *[]Tour, cities []City, index int) {
+	t := Tour{cities}
+	if index == len(cities)-1 {
+		*tours = append(*tours, t)
+	} else {
+		for j := index; j < len(t.cities); j++ {
+			t.swap(index, j)
+			alltours(tours, t.cities, index+1)
+			t.swap(index, j)
+		}
+	}
 }
 
 // Make a set of n cities, each with random coordinates within a (width x height) rectangle
@@ -42,7 +76,5 @@ func cities(n int, width int, height int, seed int64) []City {
 }
 
 func main() {
-
-	fmt.Println("foo")
-
+	fmt.Printf("%+v\n", alltours_tsp(cities(3, 200, 100, 42)))
 }
