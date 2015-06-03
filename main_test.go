@@ -88,10 +88,18 @@ func TestTourContains(t *testing.T) {
 }
 
 func TestAlltours(t *testing.T) {
-	var tours []Tour
-	alltours(&tours, cities(3, 100, 100, 42), 0)
-	if len(tours) != 6 {
-		t.Error("Expected", 6, "found", len(tours))
+	c := cities(4, 100, 100, 42)
+	tours := alltours(c)
+	if len(tours) != 24 {
+		t.Error("Expected", 24, "found", len(tours))
+	}
+
+	for _, tour := range tours {
+		for _, c := range c {
+			if !tour.contains(c) {
+				t.Error("Expected", c, "in tour", tour, "but was not found")
+			}
+		}
 	}
 }
 
