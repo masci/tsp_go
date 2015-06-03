@@ -1,6 +1,7 @@
 package main
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -65,6 +66,12 @@ func TestTourLength(t *testing.T) {
 	if tour.length() != 18 {
 		t.Error("Expected", 18, "found", tour.length())
 	}
+
+	// an empty Tour should have length 0
+	var empty Tour
+	if empty.length() != 0 {
+		t.Error("Expected", 0, "found", empty.length())
+	}
 }
 
 func TestAlltours(t *testing.T) {
@@ -72,5 +79,15 @@ func TestAlltours(t *testing.T) {
 	alltours(&tours, cities(3, 100, 100, 42), 0)
 	if len(tours) != 6 {
 		t.Error("Expected", 6, "found", len(tours))
+	}
+}
+
+func TestShortestTour(t *testing.T) {
+	t1 := Tour{[]City{City{0, 0}, City{1, 1}, City{2, 2}}}
+	t2 := Tour{[]City{City{0, 0}, City{2, 2}, City{8, 2}}}
+	tours := []Tour{t1, t2}
+	out := shortest_tour(tours)
+	if !reflect.DeepEqual(out, t1) {
+		t.Error("Expected", t1, "found", out)
 	}
 }

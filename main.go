@@ -38,7 +38,7 @@ func (t *Tour) append(c City) {
 
 // compute Tour length
 func (t *Tour) length() float64 {
-	var l float64
+	l := 0.0
 	for i, c := range t.cities {
 		if i > 0 {
 			d, _ := c.distance(&(t.cities[i-1]))
@@ -60,7 +60,13 @@ func alltours_tsp(cities []City) Tour {
 
 // find the shortest tour in the given array of tours
 func shortest_tour(tours []Tour) Tour {
-	return tours[0]
+	min := Tour{}
+	for _, t := range tours {
+		if min.length() == 0 || t.length() < min.length() {
+			min = t
+		}
+	}
+	return min
 }
 
 // Return all possible tours for the City instances contained in the array
