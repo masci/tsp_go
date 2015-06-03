@@ -55,6 +55,18 @@ func TestTourAppend(t *testing.T) {
 	}
 }
 
+func TestTourLength(t *testing.T) {
+	c1 := City{2, 4}
+	c2 := City{2, 8}
+	c3 := City{7, 8}
+	c4 := City{7, 4}
+
+	tour := Tour{[]City{c1, c2, c3, c4}}
+	if tour.length() != 18 {
+		t.Error("Expected", 18, "found", tour.length())
+	}
+}
+
 func TestAlltours(t *testing.T) {
 	var tours []Tour
 	alltours(&tours, cities(3, 100, 100, 42), 0)

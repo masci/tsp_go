@@ -36,6 +36,21 @@ func (t *Tour) append(c City) {
 	t.cities = append(t.cities, c)
 }
 
+// compute Tour length
+func (t *Tour) length() float64 {
+	var l float64
+	for i, c := range t.cities {
+		if i > 0 {
+			d, _ := c.distance(&(t.cities[i-1]))
+			l += d
+		} else {
+			d, _ := c.distance(&(t.cities[len(t.cities)-1]))
+			l += d
+		}
+	}
+	return l
+}
+
 // solve the tsp problem for the given array of City
 func alltours_tsp(cities []City) Tour {
 	var tours []Tour
