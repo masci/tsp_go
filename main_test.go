@@ -7,9 +7,18 @@ import (
 func TestDistance(t *testing.T) {
 	a := City{3, 0}
 	b := City{0, 4}
-	d := a.distance(&b)
-	if d != 5.0 {
-		t.Error("Expected 5.0, found ", d)
+	d, err := a.distance(&b)
+	if err != nil && d != 5.0 {
+		t.Error("Expected 5.0, found", d)
+	}
+
+	c := City{-1, 0}
+	d, err = a.distance(&c)
+	if err == nil {
+		t.Error("Expected an error")
+	}
+	if d != 0.0 {
+		t.Error("Expected result 0.0, found", d)
 	}
 }
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
 	"math/rand"
@@ -10,10 +11,13 @@ type City struct {
 	x, y float64
 }
 
-func (c *City) distance(other *City) float64 {
+func (c *City) distance(other *City) (float64, error) {
+	if other.x < 0 || other.y < 0 {
+		return 0.0, errors.New("Distance only allows positive coordinates")
+	}
 	sx := math.Pow(other.x-c.x, 2)
 	sy := math.Pow(other.y-c.y, 2)
-	return math.Sqrt(sx + sy)
+	return math.Sqrt(sx + sy), nil
 }
 
 func alltours_tsp( /*cities*/ ) {
