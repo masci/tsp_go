@@ -51,6 +51,16 @@ func (t *Tour) length() float64 {
 	return l
 }
 
+// does a Tour contain a City?
+func (t *Tour) contains(city City) bool {
+	for _, c := range t.cities {
+		if c == city {
+			return true
+		}
+	}
+	return false
+}
+
 // solve the tsp problem for the given array of City
 func alltours_tsp(cities []City) Tour {
 	var tours []Tour

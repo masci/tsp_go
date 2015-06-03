@@ -74,6 +74,19 @@ func TestTourLength(t *testing.T) {
 	}
 }
 
+func TestTourContains(t *testing.T) {
+	c := cities(2, 100, 100, 42)
+	tour := Tour{c}
+
+	if !tour.contains(c[1]) {
+		t.Error("Expected", true, "found", false)
+	}
+
+	if tour.contains(City{101, 101}) {
+		t.Error("Expected", false, "found", true)
+	}
+}
+
 func TestAlltours(t *testing.T) {
 	var tours []Tour
 	alltours(&tours, cities(3, 100, 100, 42), 0)
