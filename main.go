@@ -121,11 +121,9 @@ func cities(n int, width int, height int, seed int64) []City {
 }
 
 func main() {
-	cs := cities(3, 200, 100, 42)
-	fmt.Println("Cities:")
-	for _, c := range cs {
-		fmt.Printf("%v\n", c)
-	}
+	cs := cities(5, 200, 100, 42)
+	fmt.Println("Cities:", cs)
 	fmt.Println("Best tour:")
-	fmt.Printf("%+v\n", alltours_tsp(cs))
+	t := alltours_tsp(cs)
+	fmt.Printf("%+v, length:%f\n", t, t.length())
 }
