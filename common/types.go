@@ -1,4 +1,4 @@
-package main
+package common
 
 import (
 	"errors"
@@ -30,7 +30,7 @@ func NewTour(cities []City) *Tour {
 }
 
 // swap two cities from a tour
-func (t *Tour) swap(i int, j int) {
+func (t *Tour) Swap(i int, j int) {
 	tmp := t.cities[i]
 	t.cities[i] = t.cities[j]
 	t.cities[j] = tmp
@@ -42,6 +42,10 @@ func (t *Tour) append(c City) {
 	t._length = 0.0 // length needs to be recomputed
 }
 
+func (t *Tour) Cities() []City {
+	return t.cities
+}
+
 // replace the array of cities
 func (t *Tour) setCities(cities []City) {
 	t.cities = cities
@@ -49,7 +53,7 @@ func (t *Tour) setCities(cities []City) {
 }
 
 // compute Tour length
-func (t *Tour) length() float64 {
+func (t *Tour) Length() float64 {
 	if t._length == 0.0 {
 		for i, c := range t.cities {
 			if i > 0 {

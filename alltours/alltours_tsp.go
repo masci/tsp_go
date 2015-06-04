@@ -1,25 +1,29 @@
 package alltours
 
+import (
+	"github.com/masci/tsp_go/common"
+)
+
 // Return all possible tours for the City instances contained in the array
 // http://en.wikipedia.org/wiki/Heap%27s_algorithm
-func alltours(cities []City) []Tour {
-	var helper func(cities []City, index int)
-	res := []Tour{}
+func alltours(cities []common.City) []common.Tour {
+	var helper func(cities []common.City, index int)
+	res := []common.Tour{}
 
-	helper = func(cities []City, n int) {
-		tmp := make([]City, len(cities))
+	helper = func(cities []common.City, n int) {
+		tmp := make([]common.City, len(cities))
 		copy(tmp, cities)
-		tour := NewTour(tmp)
+		tour := common.NewTour(tmp)
 
 		if n == 1 {
 			res = append(res, *tour)
 		} else {
 			for i := 0; i < n; i++ {
-				helper(tour.cities, n-1)
+				helper(tour.Cities(), n-1)
 				if n%2 == 1 {
-					tour.swap(i, n-1)
+					tour.Swap(i, n-1)
 				} else {
-					tour.swap(0, n-1)
+					tour.Swap(0, n-1)
 				}
 			}
 		}
@@ -30,7 +34,7 @@ func alltours(cities []City) []Tour {
 }
 
 // solve the tsp problem for the given array of City
-func alltours_tsp(cities []City) Tour {
+func AlltoursTsp(cities []common.City) common.Tour {
 	tours := alltours(cities)
-	return shortest_tour(tours)
+	return common.ShortestTour(tours)
 }
