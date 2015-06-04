@@ -26,3 +26,4 @@ _testmain.go
 *.swp
 tsp_go
 cpu.out
+*.png
