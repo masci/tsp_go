@@ -12,7 +12,7 @@ The problem is solved using different approaches:
 
 To run the tests simply go with:
 
-    go test -v
+    go test -v ./...
 
 To run benchmarks without running tests, issue the command: 
 
