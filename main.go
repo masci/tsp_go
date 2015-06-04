@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/masci/tsp_go/alltours"
 	"math/rand"
 )
 
@@ -36,6 +37,6 @@ func main() {
 	fmt.Println("Cities:", cs)
 
 	fmt.Println("Best tour with alltours_tsp:")
-	t := alltours_tsp(cs)
+	t := alltours.alltours_tsp(cs)
 	fmt.Printf("%+v, length:%f\n", t, t.length())
 }

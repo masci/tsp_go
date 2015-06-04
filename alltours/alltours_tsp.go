@@ -1,4 +1,4 @@
-package main
+package alltours
 
 // Return all possible tours for the City instances contained in the array
 // http://en.wikipedia.org/wiki/Heap%27s_algorithm
