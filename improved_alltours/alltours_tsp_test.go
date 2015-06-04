@@ -1,11 +1,12 @@
 package improved_alltours
 
 import (
+	"github.com/masci/tsp_go/common"
 	"testing"
 )
 
 func TestImprovedAlltours(t *testing.T) {
-	c := cities(4, 100, 100, 42)
+	c := common.Cities(4, 100, 100, 42)
 	tours := improved_alltours(c)
 
 	if len(tours) != 6 {
@@ -14,7 +15,7 @@ func TestImprovedAlltours(t *testing.T) {
 
 	for _, tour := range tours {
 		for _, c := range c {
-			if !tour.contains(c) {
+			if !tour.Contains(c) {
 				t.Error("Expected", c, "in tour", tour, "but was not found")
 			}
 		}
@@ -23,7 +24,7 @@ func TestImprovedAlltours(t *testing.T) {
 
 func benchImprovedAlltoursTsp(i int, b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		improved_alltours_tsp(cities(i, 900, 600, 42))
+		AlltoursTsp(common.Cities(i, 900, 600, 42))
 	}
 }
 

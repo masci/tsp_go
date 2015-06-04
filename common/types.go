@@ -69,7 +69,7 @@ func (t *Tour) Length() float64 {
 }
 
 // does a Tour contain a City?
-func (t *Tour) contains(city City) bool {
+func (t *Tour) Contains(city City) bool {
 	for _, c := range t.cities {
 		if c == city {
 			return true

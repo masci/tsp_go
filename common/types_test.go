@@ -23,10 +23,10 @@ func TestCityDistance(t *testing.T) {
 }
 
 func TestTourSwap(t *testing.T) {
-	tour := NewTour(cities(3, 100, 100, 42))
+	tour := NewTour(Cities(3, 100, 100, 42))
 	c1 := tour.cities[1]
 	c2 := tour.cities[2]
-	tour.swap(1, 2)
+	tour.Swap(1, 2)
 	if tour.cities[1] != c2 {
 		t.Error("Expected", c2, "found", tour.cities[1])
 	}
@@ -36,9 +36,9 @@ func TestTourSwap(t *testing.T) {
 }
 
 func TestTourAppend(t *testing.T) {
-	tour := NewTour(cities(2, 100, 100, 42))
+	tour := NewTour(Cities(2, 100, 100, 42))
 	c := City{0, 0}
-	tour.append(c)
+	tour.Append(c)
 	if tour.cities[2] != c {
 		t.Error("Expected", c, "found", tour.cities[2])
 	}
@@ -51,26 +51,26 @@ func TestTourLength(t *testing.T) {
 	c4 := City{7, 4}
 
 	tour := NewTour([]City{c1, c2, c3, c4})
-	if tour.length() != 18 {
-		t.Error("Expected", 18, "found", tour.length())
+	if tour.Length() != 18 {
+		t.Error("Expected", 18, "found", tour.Length())
 	}
 
 	// an empty Tour should have length 0
 	var empty Tour
-	if empty.length() != 0 {
-		t.Error("Expected", 0, "found", empty.length())
+	if empty.Length() != 0 {
+		t.Error("Expected", 0, "found", empty.Length())
 	}
 }
 
 func TestTourContains(t *testing.T) {
-	c := cities(2, 100, 100, 42)
+	c := Cities(2, 100, 100, 42)
 	tour := NewTour(c)
 
-	if !tour.contains(c[1]) {
+	if !tour.Contains(c[1]) {
 		t.Error("Expected", true, "found", false)
 	}
 
-	if tour.contains(City{101, 101}) {
+	if tour.Contains(City{101, 101}) {
 		t.Error("Expected", false, "found", true)
 	}
 }
