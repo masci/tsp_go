@@ -21,7 +21,14 @@ func (c *City) distance(other *City) (float64, error) {
 }
 
 type Tour struct {
-	cities []City
+	cities  []City
+	_length float64
+}
+
+// Tour constructor
+func NewTour(cities []City) *Tour {
+	t := Tour{cities: cities, _length: 0.0}
+	return &t
 }
 
 // swap two cities from a tour
@@ -34,21 +41,29 @@ func (t *Tour) swap(i int, j int) {
 // append a new City to this Tour
 func (t *Tour) append(c City) {
 	t.cities = append(t.cities, c)
+	t._length = 0.0 // length needs to be recomputed
+}
+
+// replace the array of cities
+func (t *Tour) setCities(cities []City) {
+	t.cities = cities
+	t._length = 0.0
 }
 
 // compute Tour length
 func (t *Tour) length() float64 {
-	l := 0.0
-	for i, c := range t.cities {
-		if i > 0 {
-			d, _ := c.distance(&(t.cities[i-1]))
-			l += d
-		} else {
-			d, _ := c.distance(&(t.cities[len(t.cities)-1]))
-			l += d
+	if t._length == 0.0 {
+		for i, c := range t.cities {
+			if i > 0 {
+				d, _ := c.distance(&(t.cities[i-1]))
+				t._length += d
+			} else {
+				d, _ := c.distance(&(t.cities[len(t.cities)-1]))
+				t._length += d
+			}
 		}
 	}
-	return l
+	return t._length
 }
 
 // does a Tour contain a City?
@@ -87,10 +102,10 @@ func alltours(cities []City) []Tour {
 	helper = func(cities []City, n int) {
 		tmp := make([]City, len(cities))
 		copy(tmp, cities)
-		tour := Tour{tmp}
+		tour := NewTour(tmp)
 
 		if n == 1 {
-			res = append(res, tour)
+			res = append(res, *tour)
 		} else {
 			for i := 0; i < n; i++ {
 				helper(tour.cities, n-1)
@@ -121,7 +136,7 @@ func cities(n int, width int, height int, seed int64) []City {
 }
 
 func main() {
-	cs := cities(5, 200, 100, 42)
+	cs := cities(9, 200, 100, 42)
 	fmt.Println("Cities:", cs)
 	fmt.Println("Best tour:")
 	t := alltours_tsp(cs)

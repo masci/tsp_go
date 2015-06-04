@@ -35,7 +35,7 @@ func TestCities(t *testing.T) {
 }
 
 func TestTourSwap(t *testing.T) {
-	tour := Tour{cities(3, 100, 100, 42)}
+	tour := NewTour(cities(3, 100, 100, 42))
 	c1 := tour.cities[1]
 	c2 := tour.cities[2]
 	tour.swap(1, 2)
@@ -48,7 +48,7 @@ func TestTourSwap(t *testing.T) {
 }
 
 func TestTourAppend(t *testing.T) {
-	tour := Tour{cities(2, 100, 100, 42)}
+	tour := NewTour(cities(2, 100, 100, 42))
 	c := City{0, 0}
 	tour.append(c)
 	if tour.cities[2] != c {
@@ -62,7 +62,7 @@ func TestTourLength(t *testing.T) {
 	c3 := City{7, 8}
 	c4 := City{7, 4}
 
-	tour := Tour{[]City{c1, c2, c3, c4}}
+	tour := NewTour([]City{c1, c2, c3, c4})
 	if tour.length() != 18 {
 		t.Error("Expected", 18, "found", tour.length())
 	}
@@ -76,7 +76,7 @@ func TestTourLength(t *testing.T) {
 
 func TestTourContains(t *testing.T) {
 	c := cities(2, 100, 100, 42)
-	tour := Tour{c}
+	tour := NewTour(c)
 
 	if !tour.contains(c[1]) {
 		t.Error("Expected", true, "found", false)
@@ -104,11 +104,31 @@ func TestAlltours(t *testing.T) {
 }
 
 func TestShortestTour(t *testing.T) {
-	t1 := Tour{[]City{City{0, 0}, City{1, 1}, City{2, 2}}}
-	t2 := Tour{[]City{City{0, 0}, City{2, 2}, City{8, 2}}}
-	tours := []Tour{t1, t2}
+	c1 := []City{City{0, 0}, City{1, 1}, City{2, 2}}
+	c2 := []City{City{0, 0}, City{2, 2}, City{8, 2}}
+	t1 := NewTour(c1)
+	t2 := NewTour(c2)
+	tours := []Tour{*t1, *t2}
 	out := shortest_tour(tours)
-	if !reflect.DeepEqual(out, t1) {
+	if !reflect.DeepEqual(out.cities, (*t1).cities) {
 		t.Error("Expected", t1, "found", out)
 	}
+}
+
+func benchAllTsp(i int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		alltours_tsp(cities(i, 900, 600, 42))
+	}
+}
+
+func BenchmarkAllTsp5(b *testing.B) {
+	benchAllTsp(5, b)
+}
+
+func BenchmarkAllTsp8(b *testing.B) {
+	benchAllTsp(8, b)
+}
+
+func BenchmarkAllTsp10(b *testing.B) {
+	benchAllTsp(10, b)
 }
