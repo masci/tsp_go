@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/masci/tsp_go.svg)](https://travis-ci.org/masci/tsp_go)
+[![GoDoc](https://godoc.org/github.com/masci/tsp_go?status.svg)](https://godoc.org/github.com/masci/tsp_go)
 
 # tsp_go
 
