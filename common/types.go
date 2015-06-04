@@ -37,7 +37,7 @@ func (t *Tour) Swap(i int, j int) {
 }
 
 // append a new City to this Tour
-func (t *Tour) append(c City) {
+func (t *Tour) Append(c City) {
 	t.cities = append(t.cities, c)
 	t._length = 0.0 // length needs to be recomputed
 }

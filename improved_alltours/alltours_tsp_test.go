@@ -1,4 +1,4 @@
-package main
+package improved_alltours
 
 import (
 	"testing"
