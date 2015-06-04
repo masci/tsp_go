@@ -18,10 +18,22 @@ func cities(n int, width int, height int, seed int64) []City {
 	return out
 }
 
+// find the shortest tour in the given array of tours
+func shortest_tour(tours []Tour) Tour {
+	min := Tour{}
+	for _, t := range tours {
+		if min.length() == 0 || t.length() < min.length() {
+			min = t
+		}
+	}
+	return min
+}
+
 func main() {
-	cs := cities(9, 200, 100, 42)
+	cs := cities(8, 200, 100, 42)
 	fmt.Println("Cities:", cs)
-	fmt.Println("Best tour:")
+
+	fmt.Println("Best tour with alltours_tsp:")
 	t := alltours_tsp(cs)
 	fmt.Printf("%+v, length:%f\n", t, t.length())
 }

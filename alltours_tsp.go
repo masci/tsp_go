@@ -34,14 +34,3 @@ func alltours_tsp(cities []City) Tour {
 	tours := alltours(cities)
 	return shortest_tour(tours)
 }
-
-// find the shortest tour in the given array of tours
-func shortest_tour(tours []Tour) Tour {
-	min := Tour{}
-	for _, t := range tours {
-		if min.length() == 0 || t.length() < min.length() {
-			min = t
-		}
-	}
-	return min
-}

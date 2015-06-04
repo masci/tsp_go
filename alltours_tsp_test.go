@@ -20,20 +20,20 @@ func TestAlltours(t *testing.T) {
 	}
 }
 
-func benchAllTsp(i int, b *testing.B) {
+func benchAlltoursTsp(i int, b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		alltours_tsp(cities(i, 900, 600, 42))
 	}
 }
 
-func BenchmarkAllTsp5(b *testing.B) {
-	benchAllTsp(5, b)
+func BenchmarkAlltoursTsp5(b *testing.B) {
+	benchAlltoursTsp(5, b)
 }
 
-func BenchmarkAllTsp8(b *testing.B) {
-	benchAllTsp(8, b)
+func BenchmarkAlltoursTsp8(b *testing.B) {
+	benchAlltoursTsp(8, b)
 }
 
-func BenchmarkAllTsp10(b *testing.B) {
-	benchAllTsp(10, b)
+func BenchmarkAlltoursTsp10(b *testing.B) {
+	benchAlltoursTsp(10, b)
 }
