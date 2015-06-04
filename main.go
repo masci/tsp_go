@@ -16,9 +16,11 @@ func main() {
 	t := alltours.AlltoursTsp(cs)
 	fmt.Printf("%+v, length:%f\n", t, t.Length())
 	fmt.Println()
+	common.PlotTour(t, "alltours")
 
 	fmt.Println("Best tour with improved AlltoursTsp:")
 	t = improved_alltours.AlltoursTsp(cs)
 	fmt.Printf("%+v, length:%f\n", t, t.Length())
 	fmt.Println()
+	common.PlotTour(t, "improved-alltours")
 }
