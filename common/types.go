@@ -9,7 +9,7 @@ type City struct {
 	x, y float64
 }
 
-func (c *City) distance(other *City) (float64, error) {
+func (c *City) Distance(other *City) (float64, error) {
 	if other.x < 0 || other.y < 0 {
 		return 0.0, errors.New("Distance only allows positive coordinates")
 	}
@@ -57,10 +57,10 @@ func (t *Tour) Length() float64 {
 	if t._length == 0.0 {
 		for i, c := range t.cities {
 			if i > 0 {
-				d, _ := c.distance(&(t.cities[i-1]))
+				d, _ := c.Distance(&(t.cities[i-1]))
 				t._length += d
 			} else {
-				d, _ := c.distance(&(t.cities[len(t.cities)-1]))
+				d, _ := c.Distance(&(t.cities[len(t.cities)-1]))
 				t._length += d
 			}
 		}

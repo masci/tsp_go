@@ -7,13 +7,13 @@ import (
 func TestCityDistance(t *testing.T) {
 	a := City{3, 0}
 	b := City{0, 4}
-	d, err := a.distance(&b)
+	d, err := a.Distance(&b)
 	if err != nil && d != 5.0 {
 		t.Error("Expected 5.0, found", d)
 	}
 
 	c := City{-1, 0}
-	d, err = a.distance(&c)
+	d, err = a.Distance(&c)
 	if err == nil {
 		t.Error("Expected an error")
 	}
