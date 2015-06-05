@@ -72,3 +72,13 @@ func PlotTour(tour Tour, fname string) error {
 
 	return nil
 }
+
+// Reverse a slice of City
+func Reverse(cities []City) []City {
+	for i := len(cities)/2 - 1; i >= 0; i-- {
+		opp := len(cities) - 1 - i
+		cities[i], cities[opp] = cities[opp], cities[i]
+	}
+
+	return cities
+}

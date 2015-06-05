@@ -29,7 +29,7 @@ To run benchmarks without running tests, issue the command:
 
     go test -run=XXX -bench=. ./...
 
-These are the result on an early 2011 MacBook Pro:
+**Warning** benchmarks are run on just one set of cities (a *Map* using Norvig's terminology) so the results are far less than accurate. These are the numbers on an early 2011 MacBook Pro:
 
     BenchmarkAlltoursTsp5   10000   197454 ns/op
     BenchmarkAlltoursTsp8   20      69997179 ns/op

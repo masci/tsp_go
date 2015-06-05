@@ -1,6 +1,7 @@
 package common
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -72,5 +73,19 @@ func TestTourContains(t *testing.T) {
 
 	if tour.Contains(City{101, 101}) {
 		t.Error("Expected", false, "found", true)
+	}
+}
+
+func TestTourReverseSegmentIfBetter(t *testing.T) {
+	tour := NewTour([]City{*NewCity(9, 3), *NewCity(3, 10), *NewCity(2, 16), *NewCity(3, 21), *NewCity(9, 28),
+		*NewCity(26, 3), *NewCity(32, 10), *NewCity(33, 16), *NewCity(32, 21), *NewCity(26, 28)})
+
+	expected := []City{*NewCity(9, 3), *NewCity(3, 10), *NewCity(2, 16), *NewCity(3, 21), *NewCity(9, 28),
+		*NewCity(26, 28), *NewCity(32, 21), *NewCity(33, 16), *NewCity(32, 10), *NewCity(26, 3)}
+
+	tour.ReverseSegmentIfBetter(5, 9)
+
+	if !reflect.DeepEqual(tour.Cities(), expected) {
+		t.Error("Expected", expected, "found", tour.Cities())
 	}
 }

@@ -39,6 +39,7 @@ func (t *Tour) Swap(i int, j int) {
 	tmp := t.cities[i]
 	t.cities[i] = t.cities[j]
 	t.cities[j] = tmp
+	t._length = 0.0 // length needs to be recomputed
 }
 
 // append a new City to this Tour
@@ -81,4 +82,35 @@ func (t *Tour) Contains(city City) bool {
 		}
 	}
 	return false
+}
+
+// reverse a segment of the Tour
+func (t *Tour) ReverseSegmentIfBetter(i int, j int) {
+	if i >= len(t.cities) || j >= len(t.cities) {
+		return
+	}
+
+	t._length = 0.0 // length needs to be recomputed
+
+	a := t.cities[i-1]
+	b := t.cities[i]
+	c := t.cities[j]
+	d := t.cities[(j+1)%len(t.cities)]
+
+	ab, _ := a.Distance(&b)
+	cd, _ := c.Distance(&d)
+	ac, _ := a.Distance(&c)
+	bd, _ := b.Distance(&d)
+
+	PlotTour(*t, "foo")
+
+	if (ab + cd) > (ac + bd) {
+		before := t.cities[:i]
+		rev := Reverse(t.cities[i : j+1])
+		after := t.cities[j+1:]
+
+		t.cities = before
+		t.cities = append(t.cities, rev...)
+		t.cities = append(t.cities, after...)
+	}
 }

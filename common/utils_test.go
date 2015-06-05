@@ -27,3 +27,12 @@ func TestCities(t *testing.T) {
 		}
 	}
 }
+
+func TestReverse(t *testing.T) {
+	c := Cities(3, 200, 100, 42)
+	c = Reverse(c)
+	expected := []City{City{23, 45}, City{68, 50}, City{105, 87}}
+	if !reflect.DeepEqual(c, expected) {
+		t.Error("Expected", expected, "found", c)
+	}
+}
