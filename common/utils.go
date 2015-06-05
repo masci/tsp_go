@@ -35,7 +35,7 @@ func Cities(n int, width int, height int, seed int64) []City {
 //
 func PlotTour(tour Tour, fname string) error {
 	persist := false
-	debug := true
+	debug := false
 
 	p, err := gnuplot.NewPlotter("", persist, debug)
 	if err != nil {
