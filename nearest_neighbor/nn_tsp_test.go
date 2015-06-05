@@ -118,3 +118,29 @@ func BenchmarkRepeatedNnTsp100_10(b *testing.B) {
 func BenchmarkRepeatedNnTsp300_100(b *testing.B) {
 	benchSampledRepeatedNnTsp(300, 100, b)
 }
+
+func benchAlteredNnTsp(i int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		NnTsp(common.Cities(i, 900, 600, 42))
+	}
+}
+
+func BenchmarkAlteredNnTsp5(b *testing.B) {
+	benchAlteredNnTsp(5, b)
+}
+
+func BenchmarkAlteredNnTsp8(b *testing.B) {
+	benchAlteredNnTsp(8, b)
+}
+
+func BenchmarkAlteredNnTsp10(b *testing.B) {
+	benchAlteredNnTsp(10, b)
+}
+
+func BenchmarkAlteredNnTsp100(b *testing.B) {
+	benchAlteredNnTsp(100, b)
+}
+
+func BenchmarkAlteredNnTsp1000(b *testing.B) {
+	benchAlteredNnTsp(1000, b)
+}

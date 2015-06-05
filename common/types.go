@@ -92,7 +92,13 @@ func (t *Tour) ReverseSegmentIfBetter(i int, j int) {
 
 	t._length = 0.0 // length needs to be recomputed
 
-	a := t.cities[i-1]
+	var a City
+	if i == 0 {
+		a = t.cities[len(t.cities)-1]
+
+	} else {
+		a = t.cities[i-1]
+	}
 	b := t.cities[i]
 	c := t.cities[j]
 	d := t.cities[(j+1)%len(t.cities)]

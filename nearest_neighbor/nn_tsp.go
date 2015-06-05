@@ -115,3 +115,7 @@ func SampledRepeatedNnTsp(cities []common.City, repetitions int) common.Tour {
 
 	return common.ShortestTour(tours)
 }
+
+func AlteredNnTsp(cities []common.City) common.Tour {
+	return common.AlterTour(NnTsp(cities))
+}

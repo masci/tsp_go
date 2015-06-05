@@ -96,3 +96,26 @@ func AllSegments(n int) []int {
 
 	return ret
 }
+
+// Try to alter tour for the better by reversing segments.
+func AlterTour(tour Tour) Tour {
+	length := tour.Length()
+	ret := NewTour(tour.Cities())
+
+	segments := AllSegments(len(tour.Cities()))
+	// we need at least 2 segments: (start, end, start, end)
+	if len(segments) < 4 {
+		return *ret
+	}
+
+	for index := 0; index < len(segments)-1; index += 2 {
+		i := segments[index]
+		j := segments[index+1]
+		ret.ReverseSegmentIfBetter(i, j)
+	}
+
+	if ret.Length() < length {
+		return AlterTour(*ret)
+	}
+	return *ret
+}

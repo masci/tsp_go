@@ -48,4 +48,10 @@ func main() {
 	fmt.Println()
 	common.PlotTour(t, "sampled-rep-nearest-neighbor")
 
+	fmt.Println("Best tour with altered NnTsp:")
+	cs = common.Cities(8, 200, 100, 42)
+	t = nearest_neighbor.AlteredNnTsp(cs)
+	fmt.Printf("%+v, length:%f\n", t, t.Length())
+	fmt.Println()
+	common.PlotTour(t, "altered-nearest-neighbor")
 }
