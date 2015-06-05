@@ -14,21 +14,30 @@ func main() {
 	fmt.Println()
 
 	fmt.Println("Best tour with AlltoursTsp:")
+	cs = common.Cities(8, 200, 100, 42)
 	t := alltours.AlltoursTsp(cs)
 	fmt.Printf("%+v, length:%f\n", t, t.Length())
 	fmt.Println()
 	common.PlotTour(t, "alltours")
 
 	fmt.Println("Best tour with improved AlltoursTsp:")
+	cs = common.Cities(8, 200, 100, 42)
 	t = improved_alltours.AlltoursTsp(cs)
 	fmt.Printf("%+v, length:%f\n", t, t.Length())
 	fmt.Println()
 	common.PlotTour(t, "improved-alltours")
 
 	fmt.Println("Best tour with NnTsp:")
+	cs = common.Cities(8, 200, 100, 42)
 	t = nearest_neighbor.NnTsp(cs)
 	fmt.Printf("%+v, length:%f\n", t, t.Length())
 	fmt.Println()
 	common.PlotTour(t, "nearest-neighbor")
 
+	fmt.Println("Best tour with Repeated NnTsp:")
+	cs = common.Cities(8, 200, 100, 42)
+	t = nearest_neighbor.RepeatedNnTsp(cs)
+	fmt.Printf("%+v, length:%f\n", t, t.Length())
+	fmt.Println()
+	common.PlotTour(t, "rep-nearest-neighbor")
 }
