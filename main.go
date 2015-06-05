@@ -5,6 +5,7 @@ import (
 	"github.com/masci/tsp_go/alltours"
 	"github.com/masci/tsp_go/common"
 	"github.com/masci/tsp_go/improved_alltours"
+	"github.com/masci/tsp_go/nearest_neighbor"
 )
 
 func main() {
@@ -23,4 +24,11 @@ func main() {
 	fmt.Printf("%+v, length:%f\n", t, t.Length())
 	fmt.Println()
 	common.PlotTour(t, "improved-alltours")
+
+	fmt.Println("Best tour with NnTsp:")
+	t = nearest_neighbor.NnTsp(cs)
+	fmt.Printf("%+v, length:%f\n", t, t.Length())
+	fmt.Println()
+	common.PlotTour(t, "nearest-neighbor")
+
 }
