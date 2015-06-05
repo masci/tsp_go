@@ -18,6 +18,11 @@ func (c *City) Distance(other *City) (float64, error) {
 	return math.Sqrt(sx + sy), nil
 }
 
+func NewCity(x float64, y float64) *City {
+	c := City{x, y}
+	return &c
+}
+
 type Tour struct {
 	cities  []City
 	_length float64
