@@ -36,3 +36,11 @@ func TestReverse(t *testing.T) {
 		t.Error("Expected", expected, "found", c)
 	}
 }
+
+func TestAllSegments(t *testing.T) {
+	expected := []int{0, 4, 0, 3, 1, 4, 0, 2, 1, 3, 2, 4}
+	res := AllSegments(4)
+	if !reflect.DeepEqual(expected, res) {
+		t.Error("Expected", expected, "found", res)
+	}
+}

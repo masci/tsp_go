@@ -82,3 +82,17 @@ func Reverse(cities []City) []City {
 
 	return cities
 }
+
+// Return ordered couples of indexes that form segments of tour of length N.
+func AllSegments(n int) []int {
+	ret := []int{}
+
+	for l := n; l > 1; l-- {
+		for start := 0; start < n-l+1; start++ {
+			ret = append(ret, start)
+			ret = append(ret, start+l)
+		}
+	}
+
+	return ret
+}
