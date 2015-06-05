@@ -2,6 +2,7 @@ package common
 
 import (
 	"bitbucket.org/binet/go-gnuplot/pkg/gnuplot"
+	"errors"
 	"fmt"
 	"math/rand"
 )
@@ -32,14 +33,14 @@ func Cities(n int, width int, height int, seed int64) []City {
 }
 
 //
-func PlotTour(tour Tour, fname string) {
+func PlotTour(tour Tour, fname string) error {
 	persist := false
 	debug := true
 
 	p, err := gnuplot.NewPlotter("", persist, debug)
 	if err != nil {
-		err_string := fmt.Sprintf("** err: %v\n", err)
-		panic(err_string)
+		err_str := fmt.Sprintf("Error initializing gnuplot: %v", err)
+		return errors.New(err_str)
 	}
 	defer p.Close()
 
@@ -64,4 +65,6 @@ func PlotTour(tour Tour, fname string) {
 	p.CheckedCmd("replot")
 
 	p.CheckedCmd("q")
+
+	return nil
 }
