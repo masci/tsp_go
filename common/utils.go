@@ -1,9 +1,9 @@
 package common
 
 import (
-	"bitbucket.org/binet/go-gnuplot/pkg/gnuplot"
 	"errors"
 	"fmt"
+	"github.com/masci/go-gnuplot"
 	"math/rand"
 )
 
