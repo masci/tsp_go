@@ -12,6 +12,13 @@ The problem is solved using different approaches:
  * **Improved All Tours**, ``improved_alltours_tsp``: slightly improved version of the above.
  * **Nearest Neighbor Algorithm**, ``nearest_neighbor``: basic optimization algorithm
 
+## Requirements
+
+ * go 1.4
+ * gnuplot (only if you want to plot solutions)
+
+The ``tsp_go`` executable will exercise all the algorithm with a small set of cities and plot the computed tours if *gnuplot* is installed.
+
 To run the tests simply go with:
 
     go test -v ./...
