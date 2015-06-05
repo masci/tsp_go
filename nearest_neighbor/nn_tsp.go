@@ -48,3 +48,37 @@ func NnTsp(cities []common.City) common.Tour {
 
 	return *t
 }
+
+func NnTspFrom(cities []common.City, start common.City) common.Tour {
+	// make a copy of the original cities slice
+	my_cities := make([]common.City, len(cities))
+	copy(my_cities, cities)
+
+	// create a tour to work with
+	t := common.NewTour(my_cities)
+	if !t.Contains(start) {
+		return *t
+	}
+
+	// move start city in the first place
+	for i, c := range my_cities {
+		if reflect.DeepEqual(c, start) {
+			t.Swap(0, i)
+			break
+		}
+	}
+
+	return NnTsp(t.Cities())
+}
+
+// Repeat the nn_tsp algorithm starting from each city; return the shortest tour.
+func RepeatedNnTsp(cities []common.City) common.Tour {
+	tours := []common.Tour{}
+
+	for _, c := range cities {
+		t := NnTspFrom(cities, c)
+		tours = append(tours, t)
+	}
+
+	return common.ShortestTour(tours)
+}

@@ -8,9 +8,10 @@ authored by Peter Norvig about *The Traveling Salesperson Problem*.
 
 The problem is solved using different approaches:
 
- * **All Tours Algorithm**, ``alltours_tsp``: this algorithm is guaranteed to solve the problem but it is highly inefficient for large input data.
- * **Improved All Tours**, ``improved_alltours_tsp``: slightly improved version of the above.
- * **Nearest Neighbor Algorithm**, ``nearest_neighbor``: basic optimization algorithm
+ * **All Tours Algorithm**, ``alltours.AlltoursTsp``: this algorithm is guaranteed to solve the problem but it is highly inefficient for large input data.
+ * **Improved All Tours**, ``improved_alltours_tsp.AlltoursTsp``: slightly improved version of the above.
+ * **Nearest Neighbor Algorithm**, ``nearest_neighbor.NnTsp``: basic optimization algorithm.
+ * **Repeated Nearest Neighbor Algorithm**, ``nearest_neighbor.RepeatedNnTsp``: repeat *nn* starting each time from a different city and take the shortest tour.
 
 ## Requirements
 
@@ -40,4 +41,10 @@ These are the result on an early 2011 MacBook Pro:
     BenchmarkNnTsp5     50000   38159 ns/op
     BenchmarkNnTsp8     30000   45066 ns/op
     BenchmarkNnTsp10    30000   54629 ns/op
+    BenchmarkNnTsp100   500     2475007 ns/op
     BenchmarkNnTsp1000  5       230256556 ns/op
+
+    BenchmarkRepeatedNnTsp5     20000   85580 ns/op
+    BenchmarkRepeatedNnTsp8     10000   200088 ns/op
+    BenchmarkRepeatedNnTsp10    5000    358738 ns/op
+    BenchmarkRepeatedNnTsp100   5       230028522 ns/op

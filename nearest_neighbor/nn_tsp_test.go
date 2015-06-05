@@ -45,6 +45,32 @@ func BenchmarkNnTsp10(b *testing.B) {
 	benchNnTsp(10, b)
 }
 
+func BenchmarkNnTsp100(b *testing.B) {
+	benchNnTsp(100, b)
+}
+
 func BenchmarkNnTsp1000(b *testing.B) {
 	benchNnTsp(1000, b)
+}
+
+func benchRepeatedNnTsp(i int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		RepeatedNnTsp(common.Cities(i, 900, 600, 42))
+	}
+}
+
+func BenchmarkRepeatedNnTsp5(b *testing.B) {
+	benchRepeatedNnTsp(5, b)
+}
+
+func BenchmarkRepeatedNnTsp8(b *testing.B) {
+	benchRepeatedNnTsp(8, b)
+}
+
+func BenchmarkRepeatedNnTsp10(b *testing.B) {
+	benchRepeatedNnTsp(10, b)
+}
+
+func BenchmarkRepeatedNnTsp100(b *testing.B) {
+	benchRepeatedNnTsp(100, b)
 }
