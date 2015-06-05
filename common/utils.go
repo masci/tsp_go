@@ -34,6 +34,10 @@ func Cities(n int, width int, height int, seed int64) []City {
 
 //
 func PlotTour(tour Tour, fname string) error {
+	if tour.Length() == 0 {
+		return errors.New("Cannot plot a Tour with 0 length")
+	}
+
 	persist := false
 	debug := false
 
