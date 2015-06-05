@@ -3,6 +3,7 @@ package nearest_neighbor
 import (
 	"github.com/masci/tsp_go/common"
 	"math"
+	"math/rand"
 	"reflect"
 )
 
@@ -32,6 +33,25 @@ func deleteFrom(city common.City, cities *[]common.City) {
 	}
 }
 
+// Return a list of k elements sampled from population. Set random.seed with seed.
+func sample(population []common.City, k int, seed int64) []common.City {
+	if k >= len(population) {
+		return population
+	}
+
+	out := make([]common.City, k)
+	r := rand.New(rand.NewSource(seed))
+	for i, index := range r.Perm(len(population)) {
+		if i == k {
+			break
+		}
+
+		out[i] = population[index]
+	}
+
+	return out
+}
+
 // Solve the tsp problem for the given array of City.
 // Start the tour at the first city; at each step extend the tour
 // by moving from the previous city to its nearest neighbor
@@ -49,6 +69,7 @@ func NnTsp(cities []common.City) common.Tour {
 	return *t
 }
 
+// Apply the NnTsp solution starting from the specified start City
 func NnTspFrom(cities []common.City, start common.City) common.Tour {
 	// make a copy of the original cities slice
 	my_cities := make([]common.City, len(cities))
@@ -76,6 +97,18 @@ func RepeatedNnTsp(cities []common.City) common.Tour {
 	tours := []common.Tour{}
 
 	for _, c := range cities {
+		t := NnTspFrom(cities, c)
+		tours = append(tours, t)
+	}
+
+	return common.ShortestTour(tours)
+}
+
+// Repeat the nn_tsp algorithm starting from repetitions number of cities; return the shortest tour.
+func SampledRepeatedNnTsp(cities []common.City, repetitions int) common.Tour {
+	tours := []common.Tour{}
+
+	for _, c := range sample(cities, repetitions, 42) {
 		t := NnTspFrom(cities, c)
 		tours = append(tours, t)
 	}

@@ -40,4 +40,12 @@ func main() {
 	fmt.Printf("%+v, length:%f\n", t, t.Length())
 	fmt.Println()
 	common.PlotTour(t, "rep-nearest-neighbor")
+
+	fmt.Println("Best tour with Sampled Repeated NnTsp:")
+	cs = common.Cities(8, 200, 100, 42)
+	t = nearest_neighbor.SampledRepeatedNnTsp(cs, 3)
+	fmt.Printf("%+v, length:%f\n", t, t.Length())
+	fmt.Println()
+	common.PlotTour(t, "sampled-rep-nearest-neighbor")
+
 }

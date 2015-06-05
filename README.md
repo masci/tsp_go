@@ -12,6 +12,7 @@ The problem is solved using different approaches:
  * **Improved All Tours**, ``improved_alltours_tsp.AlltoursTsp``: slightly improved version of the above.
  * **Nearest Neighbor Algorithm**, ``nearest_neighbor.NnTsp``: basic optimization algorithm.
  * **Repeated Nearest Neighbor Algorithm**, ``nearest_neighbor.RepeatedNnTsp``: repeat *nn* starting each time from a different city and take the shortest tour.
+ * **Sampled Repeated Nearest Neighbor Algorithm**, ``nearest_neighbor.SampledRepeatedNnTsp``: repeat *nn* starting each time from a subset of different cities and take the shortest tour.
 
 ## Requirements
 
@@ -48,3 +49,11 @@ These are the result on an early 2011 MacBook Pro:
     BenchmarkRepeatedNnTsp8     10000   200088 ns/op
     BenchmarkRepeatedNnTsp10    5000    358738 ns/op
     BenchmarkRepeatedNnTsp100   5       230028522 ns/op
+
+    BenchmarkRepeatedNnTsp10        5000    360743 ns/op
+    BenchmarkRepeatedNnTsp100       5       229716757 ns/op
+    BenchmarkRepeatedNnTsp5_3       20000   88453 ns/op
+    BenchmarkRepeatedNnTsp8_5       10000   167354 ns/op
+    BenchmarkRepeatedNnTsp10_5      10000   209789 ns/op
+    BenchmarkRepeatedNnTsp100_10    50      24378681 ns/op
+    BenchmarkRepeatedNnTsp300_100   1       1882211378 ns/op

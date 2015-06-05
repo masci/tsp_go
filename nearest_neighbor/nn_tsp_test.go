@@ -27,6 +27,24 @@ func TestNearestNeighbor(t *testing.T) {
 	}
 }
 
+func TestPopulation(t *testing.T) {
+	cities := common.Cities(50, 200, 100, 42)
+	out := sample(cities, 50, 42)
+
+	if !reflect.DeepEqual(out, cities) {
+		t.Error("Expected", cities, "found", out)
+	}
+
+	out = sample(cities, 3, 42)
+	expected := []common.City{
+		*common.NewCity(31, 7),
+		*common.NewCity(129, 67),
+		*common.NewCity(107, 79)}
+	if !reflect.DeepEqual(out, expected) {
+		t.Error("Expected", expected, "found", out)
+	}
+}
+
 func benchNnTsp(i int, b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		NnTsp(common.Cities(i, 900, 600, 42))
@@ -73,4 +91,30 @@ func BenchmarkRepeatedNnTsp10(b *testing.B) {
 
 func BenchmarkRepeatedNnTsp100(b *testing.B) {
 	benchRepeatedNnTsp(100, b)
+}
+
+func benchSampledRepeatedNnTsp(i int, k int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SampledRepeatedNnTsp(common.Cities(i, 900, 600, 42), k)
+	}
+}
+
+func BenchmarkRepeatedNnTsp5_3(b *testing.B) {
+	benchSampledRepeatedNnTsp(5, 3, b)
+}
+
+func BenchmarkRepeatedNnTsp8_5(b *testing.B) {
+	benchSampledRepeatedNnTsp(8, 5, b)
+}
+
+func BenchmarkRepeatedNnTsp10_5(b *testing.B) {
+	benchSampledRepeatedNnTsp(10, 5, b)
+}
+
+func BenchmarkRepeatedNnTsp100_10(b *testing.B) {
+	benchSampledRepeatedNnTsp(100, 10, b)
+}
+
+func BenchmarkRepeatedNnTsp300_100(b *testing.B) {
+	benchSampledRepeatedNnTsp(300, 100, b)
 }
