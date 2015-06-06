@@ -120,3 +120,7 @@ func (t *Tour) ReverseSegmentIfBetter(i int, j int) {
 		t.cities = append(t.cities, after...)
 	}
 }
+
+type Edge struct {
+	A, B *City
+}
