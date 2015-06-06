@@ -2,6 +2,7 @@ package common
 
 import (
 	"errors"
+	"fmt"
 	"math"
 )
 
@@ -119,6 +120,10 @@ func (t *Tour) ReverseSegmentIfBetter(i int, j int) {
 		t.cities = append(t.cities, rev...)
 		t.cities = append(t.cities, after...)
 	}
+}
+
+func (t Tour) String() string {
+	return fmt.Sprintf("Cities:%v, Length:%f", t.cities, t._length)
 }
 
 type Edge struct {
