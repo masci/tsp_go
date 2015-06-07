@@ -8,3 +8,8 @@ import (
 func GreedyTsp(cities []common.City) common.Tour {
 	return *(common.NewTour(cities))
 }
+
+// Return all edges between distinct cities, sorted shortest first.
+func ShortestEdgeFirst(cities []common.City) []common.Edge {
+	return []common.Edge{}
+}
