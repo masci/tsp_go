@@ -127,5 +127,33 @@ func (t Tour) String() string {
 }
 
 type Edge struct {
-	A, B *City
+	A, B City
+}
+
+func (e Edge) Length() float64 {
+	res, _ := e.A.Distance(&e.B)
+	return res
+}
+
+type Edges []Edge
+
+func (e Edges) Len() int {
+	return len(e)
+}
+
+func (e Edges) Swap(i, j int) {
+	e[i], e[j] = e[j], e[i]
+}
+
+func (e Edges) Less(i, j int) bool {
+	return e[i].Length() < e[j].Length()
+}
+
+func (e Edges) String() string {
+	res := ""
+	for _, edge := range e {
+		res += fmt.Sprintf("Edge[A:%v, B:%v] ", edge.A, edge.B)
+	}
+	res += "\n"
+	return res
 }
