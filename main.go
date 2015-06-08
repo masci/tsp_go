@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/masci/tsp_go/alltours"
 	"github.com/masci/tsp_go/common"
+	"github.com/masci/tsp_go/greedy"
 	"github.com/masci/tsp_go/improved_alltours"
 	"github.com/masci/tsp_go/nearest_neighbor"
 )
@@ -54,4 +55,12 @@ func main() {
 	fmt.Println(t)
 	fmt.Println()
 	common.PlotTour(t, "altered-nearest-neighbor")
+
+	fmt.Println("Best tour with GreedyTsp:")
+	cs = common.Cities(8, 200, 100, 42)
+	t = greedy.GreedyTsp(cs)
+	fmt.Println(t)
+	fmt.Println()
+	common.PlotTour(t, "greedy")
+
 }

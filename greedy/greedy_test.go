@@ -1,6 +1,7 @@
 package greedy
 
 import (
+	"fmt"
 	"github.com/masci/tsp_go/common"
 	"testing"
 )
@@ -17,4 +18,10 @@ func TestShortestEdgeFirst(t *testing.T) {
 	if res[0] != e1 || res[1] != e2 || res[2] != e3 {
 		t.Error("Wrong sorting for", res)
 	}
+}
+
+func TestGreedyTsp(t *testing.T) {
+	cities := common.Cities(10, 200, 100, 42)
+	res := GreedyTsp(cities)
+	fmt.Println(res)
 }
