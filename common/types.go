@@ -123,7 +123,7 @@ func (t *Tour) ReverseSegmentIfBetter(i int, j int) {
 }
 
 func (t Tour) String() string {
-	return fmt.Sprintf("Cities:%v, Length:%f", t.cities, t._length)
+	return fmt.Sprintf("Cities:%v, Length:%f", t.Cities(), t.Length())
 }
 
 type Edge struct {
@@ -157,3 +157,5 @@ func (e Edges) String() string {
 	res += "\n"
 	return res
 }
+
+type Endpoints map[City][]City
