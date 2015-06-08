@@ -21,6 +21,13 @@ func main() {
 	fmt.Println()
 	common.PlotTour(t, "alltours")
 
+	fmt.Println("Best tour with AlltoursTspQp:")
+	cs = common.Cities(8, 200, 100, 42)
+	t = alltours.AlltoursTspQp(cs)
+	fmt.Println(t)
+	fmt.Println()
+	common.PlotTour(t, "alltoursqp")
+
 	fmt.Println("Best tour with improved AlltoursTsp:")
 	cs = common.Cities(8, 200, 100, 42)
 	t = improved_alltours.AlltoursTsp(cs)
