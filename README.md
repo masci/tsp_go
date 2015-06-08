@@ -14,6 +14,7 @@ The problem is solved using different approaches:
  * **Repeated Nearest Neighbor Algorithm**, ``nearest_neighbor.RepeatedNnTsp``: repeat *nn* starting each time from a different city and take the shortest tour.
  * **Sampled Repeated Nearest Neighbor Algorithm**, ``nearest_neighbor.SampledRepeatedNnTsp``: repeat *nn* starting each time from a subset of different cities and take the shortest tour.
  * **Altered Nearest Neighbor Algorithm**, ``nearest_neighbor.AlteredNnTsp``: try to revert segments to eliminate crossing and find better solutions
+ * **Greedy Algorithm**, ``greedy.GreedyTsp``: greedily join segments until you form a complete tour
 
 ## Requirements
 
@@ -64,3 +65,9 @@ To run benchmarks without running tests, issue the command:
     BenchmarkAlteredNnTsp10         30000   54651 ns/op
     BenchmarkAlteredNnTsp100        500     2549538 ns/op
     BenchmarkAlteredNnTsp1000       5       228328117 ns/op
+
+    BenchmarkGreedyTsp5             30000   53022 ns/op
+    BenchmarkGreedyTsp8             10000   105980 ns/op
+    BenchmarkGreedyTsp10            10000   180379 ns/op
+    BenchmarkGreedyTsp100           100     17568525 ns/op
+    BenchmarkGreedyTsp1000          1       4146182727 ns/op
