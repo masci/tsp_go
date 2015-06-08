@@ -25,3 +25,29 @@ func TestGreedyTsp(t *testing.T) {
 	res := GreedyTsp(cities)
 	fmt.Println(res)
 }
+
+func benchGreedyTsp(i int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		GreedyTsp(common.Cities(i, 900, 600, 42))
+	}
+}
+
+func BenchmarkGreedyTsp5(b *testing.B) {
+	benchGreedyTsp(5, b)
+}
+
+func BenchmarkGreedyTsp8(b *testing.B) {
+	benchGreedyTsp(8, b)
+}
+
+func BenchmarkGreedyTsp10(b *testing.B) {
+	benchGreedyTsp(10, b)
+}
+
+func BenchmarkGreedyTsp100(b *testing.B) {
+	benchGreedyTsp(100, b)
+}
+
+func BenchmarkGreedyTsp1000(b *testing.B) {
+	benchGreedyTsp(1000, b)
+}
