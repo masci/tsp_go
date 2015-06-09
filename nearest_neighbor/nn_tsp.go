@@ -119,3 +119,9 @@ func SampledRepeatedNnTsp(cities []common.City, repetitions int) common.Tour {
 func AlteredNnTsp(cities []common.City) common.Tour {
 	return common.AlterTour(NnTsp(cities))
 }
+
+// Evaluate a fair amount of samples
+func AutoSampledRepeatedNnTsp(cities []common.City) common.Tour {
+	s := int(math.Ceil(float64(len(cities)) / 3))
+	return SampledRepeatedNnTsp(cities, s)
+}
