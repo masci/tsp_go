@@ -4,14 +4,15 @@ import (
 	"errors"
 	"fmt"
 	"github.com/masci/go-gnuplot"
+	"math"
 	"math/rand"
 )
 
 // shortest_tour finds the shortest tour in the given array of tours
 func ShortestTour(tours []Tour) Tour {
-	min := Tour{}
+	min := Tour{_length: math.MaxInt64}
 	for _, t := range tours {
-		if min.Length() == 0 || t.Length() < min.Length() {
+		if t.Length() < min.Length() {
 			min = t
 		}
 	}
