@@ -1,8 +1,8 @@
 package alltours
 
 import (
-	"fmt"
 	"github.com/masci/tsp_go/common"
+	"reflect"
 	"testing"
 )
 
@@ -24,7 +24,21 @@ func TestAlltours(t *testing.T) {
 
 func TestAlltoursQp(t *testing.T) {
 	c := common.Cities(3, 100, 100, 42)
-	fmt.Println(alltoursQp(c))
+	res := alltoursQp(c)
+	exp := alltours(c)
+
+	for _, tres := range res {
+		found := false
+		for _, texp := range exp {
+			if reflect.DeepEqual(tres.Cities(), texp.Cities()) {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Error("Tour", tres, "not found in expected", exp)
+		}
+	}
 }
 
 func benchAlltoursTsp(i int, b *testing.B) {
