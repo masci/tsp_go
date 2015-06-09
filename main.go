@@ -66,11 +66,12 @@ func main() {
 			wg.Add(1)
 			go func(s string) {
 				defer wg.Done()
+				out := ""
 
 				var res common.Tour
 				cs := common.Cities(*numcities, 200, 100, 42)
 				if *verbose {
-					fmt.Println("Cities:", cs)
+					out += fmt.Sprintln("Cities:", cs)
 				}
 
 				fun, ok := algos[s]
@@ -79,22 +80,24 @@ func main() {
 					os.Exit(1)
 				}
 
-				fmt.Println("Best tour for", len(cs), "cities with", s)
+				out += fmt.Sprintf("Best tour for %d cities with %s algorithm\n", len(cs), s)
 				t0 := time.Now()
 				res = fun(cs)
 				t1 := time.Now()
-				fmt.Printf("Took %v to run.\n", t1.Sub(t0))
+				out += fmt.Sprintf("Took %v to run.\n", t1.Sub(t0))
 
 				if *verbose {
-					fmt.Println(res)
+					out += fmt.Sprintln(res)
 				} else {
-					fmt.Println("Lenght:", res.Length())
+					out += fmt.Sprintln("Lenght:", res.Length())
 				}
 
 				if *plot {
 					common.PlotTour(res, s)
-					fmt.Println("Tour plotted to", fmt.Sprintf("%s.png", s))
+					out += fmt.Sprintf("Tour plotted to %s.png\n", s)
 				}
+
+				fmt.Println(out)
 			}(s)
 
 		}
