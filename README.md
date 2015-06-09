@@ -41,7 +41,7 @@ The problem is solved using different approaches:
       run [<flags>] <name> [<cities>] [<cpus>]
         Run solution algorithms
 
-For example, to exercise all the algorithm with a set of 10 cities, plotting the tours if *gnuplot* is installed using 8 cpus issue the command:
+For example, to exercise all the algorithm with a set of 10 cities, plotting the tours if *gnuplot* is installed, using 8 cpus, issue the command:
 
     ./tsp_go run all 10 8 --plot
 
