@@ -21,7 +21,29 @@ The problem is solved using different approaches:
  * go 1.4
  * gnuplot (only if you want to plot solutions)
 
-The ``tsp_go`` executable will exercise all the algorithm with a small set of cities and plot the computed tours if *gnuplot* is installed.
+## Usage
+
+    usage: tsp_go [<flags>] <command> [<args> ...]
+
+    The TSP problem solver.
+
+    Flags:
+      --help         Show help (also see --help-long and --help-man).
+      -v, --verbose  Verbose mode
+
+    Commands:
+      help [<command>...]
+        Show help.
+
+      list
+        List available alogrithms
+
+      run [<flags>] <name> [<cities>] [<cpus>]
+        Run solution algorithms
+
+For example, to exercise all the algorithm with a set of 10 cities, plotting the tours if *gnuplot* is installed using 8 cpus issue the command:
+
+    ./tsp_go run all 10 8 --plot
 
 To run the tests simply go with:
 
