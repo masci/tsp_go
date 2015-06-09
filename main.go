@@ -9,6 +9,7 @@ import (
 	"github.com/masci/tsp_go/nearest_neighbor"
 	"gopkg.in/alecthomas/kingpin.v2"
 	"os"
+	"runtime"
 	"sync"
 	"time"
 )
@@ -39,17 +40,20 @@ var (
 
 func main() {
 
+	globalt0 := time.Now()
+
 	switch kingpin.MustParse(app.Parse(os.Args[1:])) {
 	case list.FullCommand():
 		println("Available algorithms:\n")
 		for k, _ := range algos {
 			println("\t", k)
 		}
-		println("\t", "SampledRepeatedNnTsp\n")
+		println("\t", "all\n")
 		os.Exit(0)
 
 	// Post message
 	case run.FullCommand():
+		runtime.GOMAXPROCS(*cpus)
 		var wg sync.WaitGroup
 
 		var scheduled []string
@@ -99,10 +103,12 @@ func main() {
 
 				fmt.Println(out)
 			}(s)
-
 		}
 
 		wg.Wait()
-
 	}
+
+	globalt1 := time.Now()
+	fmt.Println("Entire process took", globalt1.Sub(globalt0))
+
 }
