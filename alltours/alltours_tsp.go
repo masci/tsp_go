@@ -11,19 +11,16 @@ func alltours(cities []common.City) []common.Tour {
 	res := []common.Tour{}
 
 	helper = func(cities []common.City, n int) {
-		tmp := make([]common.City, len(cities))
-		copy(tmp, cities)
-		tour := common.NewTour(tmp)
-
 		if n == 1 {
+			tour := common.NewTour(cities)
 			res = append(res, *tour)
 		} else {
 			for i := 0; i < n; i++ {
-				helper(tour.Cities(), n-1)
-				if n%2 == 1 {
-					tour.Swap(i, n-1)
+				helper(cities, n-1)
+				if n%2 == 0 {
+					cities[i], cities[n-1] = cities[n-1], cities[i]
 				} else {
-					tour.Swap(0, n-1)
+					cities[0], cities[n-1] = cities[n-1], cities[0]
 				}
 			}
 		}

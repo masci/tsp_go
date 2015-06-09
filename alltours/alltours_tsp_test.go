@@ -20,10 +20,18 @@ func TestAlltours(t *testing.T) {
 			}
 		}
 	}
+
+	for i, tour := range tours {
+		for j := i + 1; j < len(tours)-1; j++ {
+			if reflect.DeepEqual(tour.Cities(), tours[j].Cities()) {
+				t.Error("Found double tour", i, j)
+			}
+		}
+	}
 }
 
 func TestAlltoursQp(t *testing.T) {
-	c := common.Cities(3, 100, 100, 42)
+	c := common.Cities(4, 100, 100, 42)
 	res := alltoursQp(c)
 	exp := alltours(c)
 

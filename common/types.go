@@ -31,7 +31,9 @@ type Tour struct {
 
 // Tour constructor
 func NewTour(cities []City) *Tour {
-	t := Tour{cities: cities, _length: 0.0}
+	tmp := make([]City, len(cities))
+	copy(tmp, cities)
+	t := Tour{cities: tmp, _length: 0.0}
 	return &t
 }
 
